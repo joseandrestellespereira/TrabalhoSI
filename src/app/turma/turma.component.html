@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col s12 m6 l4">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Código" id="codigoturma"  type="number" [(ngModel)]="turma.id">
+    </mat-form-field>
+  </div>
+  <div class="col s12 m6 l8">
+    <mat-form-field >
+      <input matInput placeholder="Curso"  type="text" [(ngModel)]="turma.curso">
+    </mat-form-field>
+  </div>
+  <div class="col s12 m6 l8">
+    <mat-form-field >
+      <input matInput placeholder="Turno"  type="text" [(ngModel)]="turma.turno">
+    </mat-form-field>
+  </div>
+</div>
+<div class="row footer-btn">
+<div class="button-row col s12"> 
+  <button *ngIf="!edit" mat-raised-button color="orange" (click)="salvar()">Salvar</button>
+  <button *ngIf="edit" mat-raised-button color="orange" (click)="atualizar()">Atualizar</button>
+</div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+
+    <ng-container matColumnDef="actionsColumn">
+      <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+          <button mat-icon-button>
+            <mat-icon matTooltip="Excluir" (click)="excluir(element.id)">delete</mat-icon>
+          </button>  
+          <button mat-icon-button>
+            <mat-icon matTooltip="Editar" (click)="markEdit(element)">edit</mat-icon>
+          </button>
+      </mat-cell>
+    </ng-container>   
+
+    <ng-container matColumnDef="codigo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="curso">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Curso </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.curso}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="turno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Turno </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.turno}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+</div>
+</div>
+
+
+
+
+
